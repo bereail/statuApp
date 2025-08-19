@@ -1,0 +1,30 @@
+Entidades principales
+
+AUTORES
+🔑 id
+nombre, año_nacimiento, año_fallecimiento, biografía
+
+UBICACIONES
+🔑 id
+nombre, dirección, barrio, lat, lng, notas
+
+ESTATUAS
+🔑 id
+slug (único), título, descripción, año, material, barrio, lat, lng
+↗ autor_id (FK → AUTORES)
+↗ ubicacion_id (FK → UBICACIONES)
+publicada, creado_en, actualizado_en
+
+ETIQUETAS
+🔑 id
+nombre (único)
+
+ESTATUA_ETIQUETA (tabla puente N:M)
+🔑 (estatua_id, etiqueta_id)
+↗ estatua_id (FK → ESTATUAS)
+↗ etiqueta_id (FK → ETIQUETAS)
+
+MEDIOS
+🔑 id
+↗ estatua_id (FK → ESTATUAS)
+tipo (foto/audio/doc), url, pie, crédito

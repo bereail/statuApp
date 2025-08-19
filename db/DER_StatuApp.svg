@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L6,3 z" fill="#0b7285" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <text x="20" y="28" font-family="Inter, Arial" font-size="20" fill="#0b7285" font-weight="600">DER — StatuApp (limpio para Workbench / impresión)</text>
+  <text x="20" y="50" font-family="Inter, Arial" font-size="12" fill="#0b7285">Generado: 2025-08-19 23:14:54</text>
+
+    <rect x="670" y="50" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="670" y="50" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="682" y="72" font-family="Inter, Arial" font-size="14" fill="white">ESTATUAS</text>
+    <text x="682" y="100" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="682" y="116" font-family="Inter, Arial" font-size="12" fill="#052e31">slug UQ</text>
+<text x="682" y="132" font-family="Inter, Arial" font-size="12" fill="#052e31">titulo</text>
+<text x="682" y="148" font-family="Inter, Arial" font-size="12" fill="#052e31">descripcion_md</text>
+<text x="682" y="164" font-family="Inter, Arial" font-size="12" fill="#052e31">anio, material, barrio</text>
+<text x="682" y="180" font-family="Inter, Arial" font-size="12" fill="#052e31">lat, lng</text>
+<text x="682" y="196" font-family="Inter, Arial" font-size="12" fill="#052e31">resumen_corto</text>
+<text x="682" y="212" font-family="Inter, Arial" font-size="12" fill="#052e31">resumen_extenso</text>
+<text x="682" y="228" font-family="Inter, Arial" font-size="12" fill="#052e31">dato_curioso</text>
+<text x="682" y="244" font-family="Inter, Arial" font-size="12" fill="#052e31">autor_id FK→autores</text>
+<text x="682" y="260" font-family="Inter, Arial" font-size="12" fill="#052e31">ubicacion_id FK→ubicaciones</text>
+<text x="682" y="276" font-family="Inter, Arial" font-size="12" fill="#052e31">publicada</text>
+<text x="682" y="292" font-family="Inter, Arial" font-size="12" fill="#052e31">creado_en, actualizado_en</text>
+    <rect x="60" y="50" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="60" y="50" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="72" y="72" font-family="Inter, Arial" font-size="14" fill="white">AUTORES</text>
+    <text x="72" y="100" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="72" y="116" font-family="Inter, Arial" font-size="12" fill="#052e31">nombre UQ</text>
+<text x="72" y="132" font-family="Inter, Arial" font-size="12" fill="#052e31">anio_nacimiento</text>
+<text x="72" y="148" font-family="Inter, Arial" font-size="12" fill="#052e31">anio_fallecimiento</text>
+<text x="72" y="164" font-family="Inter, Arial" font-size="12" fill="#052e31">biografia_md</text>
+<text x="72" y="180" font-family="Inter, Arial" font-size="12" fill="#052e31">creado_en, actualizado_en</text>
+    <rect x="1280" y="50" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="1280" y="50" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="1292" y="72" font-family="Inter, Arial" font-size="14" fill="white">UBICACIONES</text>
+    <text x="1292" y="100" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="1292" y="116" font-family="Inter, Arial" font-size="12" fill="#052e31">nombre</text>
+<text x="1292" y="132" font-family="Inter, Arial" font-size="12" fill="#052e31">direccion</text>
+<text x="1292" y="148" font-family="Inter, Arial" font-size="12" fill="#052e31">barrio</text>
+<text x="1292" y="164" font-family="Inter, Arial" font-size="12" fill="#052e31">lat, lng</text>
+<text x="1292" y="180" font-family="Inter, Arial" font-size="12" fill="#052e31">notas_md</text>
+<text x="1292" y="196" font-family="Inter, Arial" font-size="12" fill="#052e31">creado_en, actualizado_en</text>
+    <rect x="60" y="350" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="60" y="350" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="72" y="372" font-family="Inter, Arial" font-size="14" fill="white">ETIQUETAS</text>
+    <text x="72" y="400" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="72" y="416" font-family="Inter, Arial" font-size="12" fill="#052e31">nombre UQ</text>
+    <rect x="60" y="600" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="60" y="600" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="72" y="622" font-family="Inter, Arial" font-size="14" fill="white">ESTATUA_ETIQUETA</text>
+    <text x="72" y="650" font-family="Inter, Arial" font-size="12" fill="#052e31">estatua_id FK</text>
+<text x="72" y="666" font-family="Inter, Arial" font-size="12" fill="#052e31">etiqueta_id FK</text>
+<text x="72" y="682" font-family="Inter, Arial" font-size="12" fill="#052e31">PK (estatua_id, etiqueta_id)</text>
+    <rect x="670" y="300" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="670" y="300" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="682" y="322" font-family="Inter, Arial" font-size="14" fill="white">MEDIOS</text>
+    <text x="682" y="350" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="682" y="366" font-family="Inter, Arial" font-size="12" fill="#052e31">estatua_id FK</text>
+<text x="682" y="382" font-family="Inter, Arial" font-size="12" fill="#052e31">tipo (foto|audio|doc)</text>
+<text x="682" y="398" font-family="Inter, Arial" font-size="12" fill="#052e31">url</text>
+<text x="682" y="414" font-family="Inter, Arial" font-size="12" fill="#052e31">pie</text>
+<text x="682" y="430" font-family="Inter, Arial" font-size="12" fill="#052e31">credito</text>
+<text x="682" y="446" font-family="Inter, Arial" font-size="12" fill="#052e31">creado_en</text>
+    <rect x="1280" y="350" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="1280" y="350" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="1292" y="372" font-family="Inter, Arial" font-size="14" fill="white">FUENTES</text>
+    <text x="1292" y="400" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="1292" y="416" font-family="Inter, Arial" font-size="12" fill="#052e31">tipo</text>
+<text x="1292" y="432" font-family="Inter, Arial" font-size="12" fill="#052e31">titulo</text>
+<text x="1292" y="448" font-family="Inter, Arial" font-size="12" fill="#052e31">autor</text>
+<text x="1292" y="464" font-family="Inter, Arial" font-size="12" fill="#052e31">anio</text>
+<text x="1292" y="480" font-family="Inter, Arial" font-size="12" fill="#052e31">url</text>
+<text x="1292" y="496" font-family="Inter, Arial" font-size="12" fill="#052e31">editorial</text>
+<text x="1292" y="512" font-family="Inter, Arial" font-size="12" fill="#052e31">notas_md</text>
+<text x="1292" y="528" font-family="Inter, Arial" font-size="12" fill="#052e31">creado_en, actualizado_en</text>
+    <rect x="1280" y="600" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="1280" y="600" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="1292" y="622" font-family="Inter, Arial" font-size="14" fill="white">ESTATUA_FUENTE</text>
+    <text x="1292" y="650" font-family="Inter, Arial" font-size="12" fill="#052e31">estatua_id FK</text>
+<text x="1292" y="666" font-family="Inter, Arial" font-size="12" fill="#052e31">fuente_id FK</text>
+<text x="1292" y="682" font-family="Inter, Arial" font-size="12" fill="#052e31">rol</text>
+<text x="1292" y="698" font-family="Inter, Arial" font-size="12" fill="#052e31">comentario</text>
+<text x="1292" y="714" font-family="Inter, Arial" font-size="12" fill="#052e31">PK (estatua_id, fuente_id)</text>
+    <rect x="210" y="650" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="210" y="650" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="222" y="672" font-family="Inter, Arial" font-size="14" fill="white">INSTITUCIONES</text>
+    <text x="222" y="700" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="222" y="716" font-family="Inter, Arial" font-size="12" fill="#052e31">nombre UQ</text>
+<text x="222" y="732" font-family="Inter, Arial" font-size="12" fill="#052e31">tipo</text>
+<text x="222" y="748" font-family="Inter, Arial" font-size="12" fill="#052e31">direccion</text>
+<text x="222" y="764" font-family="Inter, Arial" font-size="12" fill="#052e31">telefono</text>
+<text x="222" y="780" font-family="Inter, Arial" font-size="12" fill="#052e31">sitio_web</text>
+<text x="222" y="796" font-family="Inter, Arial" font-size="12" fill="#052e31">creado_en, actualizado_en</text>
+    <rect x="670" y="850" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="670" y="850" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="682" y="872" font-family="Inter, Arial" font-size="14" fill="white">ESTATUA_INSTITUCION</text>
+    <text x="682" y="900" font-family="Inter, Arial" font-size="12" fill="#052e31">estatua_id FK</text>
+<text x="682" y="916" font-family="Inter, Arial" font-size="12" fill="#052e31">institucion_id FK</text>
+<text x="682" y="932" font-family="Inter, Arial" font-size="12" fill="#052e31">rol</text>
+<text x="682" y="948" font-family="Inter, Arial" font-size="12" fill="#052e31">porcentaje_credito</text>
+<text x="682" y="964" font-family="Inter, Arial" font-size="12" fill="#052e31">PK (estatua_id, institucion_id, rol)</text>
+    <rect x="1130" y="650" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="1130" y="650" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="1142" y="672" font-family="Inter, Arial" font-size="14" fill="white">RELEVAMIENTOS</text>
+    <text x="1142" y="700" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="1142" y="716" font-family="Inter, Arial" font-size="12" fill="#052e31">estatua_id FK</text>
+<text x="1142" y="732" font-family="Inter, Arial" font-size="12" fill="#052e31">fecha</text>
+<text x="1142" y="748" font-family="Inter, Arial" font-size="12" fill="#052e31">estado</text>
+<text x="1142" y="764" font-family="Inter, Arial" font-size="12" fill="#052e31">notas_md</text>
+<text x="1142" y="780" font-family="Inter, Arial" font-size="12" fill="#052e31">foto_url</text>
+<text x="1142" y="796" font-family="Inter, Arial" font-size="12" fill="#052e31">creado_en</text>
+    <rect x="670" y="560" width="260" height="180" rx="12" ry="12" fill="#0b7285" opacity="0.12" stroke="#0b7285" stroke-width="1.5"/>
+    <rect x="670" y="560" width="260" height="32" rx="12" ry="12" fill="#0b7285"/>
+    <text x="682" y="582" font-family="Inter, Arial" font-size="14" fill="white">EVENTOS_ESCANEO</text>
+    <text x="682" y="610" font-family="Inter, Arial" font-size="12" fill="#052e31">id PK</text>
+<text x="682" y="626" font-family="Inter, Arial" font-size="12" fill="#052e31">occurred_at</text>
+<text x="682" y="642" font-family="Inter, Arial" font-size="12" fill="#052e31">slug</text>
+<text x="682" y="658" font-family="Inter, Arial" font-size="12" fill="#052e31">estatua_id FK</text>
+<text x="682" y="674" font-family="Inter, Arial" font-size="12" fill="#052e31">user_agent, referer</text>
+<text x="682" y="690" font-family="Inter, Arial" font-size="12" fill="#052e31">utm_*</text>
+<text x="682" y="706" font-family="Inter, Arial" font-size="12" fill="#052e31">geohash, osm_zoom, tile_x, tile_y</text>
+<text x="682" y="722" font-family="Inter, Arial" font-size="12" fill="#052e31">ip_hash</text><path d="M 800.0 140.0 L 190.0 140.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><text x="501.0" y="134.0" font-family="Inter, Arial" font-size="11" fill="#0b7285">N:1</text><path d="M 800.0 140.0 L 1410.0 140.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><text x="1111.0" y="134.0" font-family="Inter, Arial" font-size="11" fill="#0b7285">N:1</text><path d="M 800.0 140.0 L 800.0 390.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><text x="806.0" y="259.0" font-family="Inter, Arial" font-size="11" fill="#0b7285">1:N</text><path d="M 800.0 140.0 L 190.0 440.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><text x="501.0" y="284.0" font-family="Inter, Arial" font-size="11" fill="#0b7285">N:M</text><path d="M 190.0 440.0 L 190.0 690.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><path d="M 190.0 690.0 L 800.0 140.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><path d="M 800.0 140.0 L 1410.0 440.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><text x="1111.0" y="284.0" font-family="Inter, Arial" font-size="11" fill="#0b7285">N:M</text><path d="M 1410.0 440.0 L 1410.0 690.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><path d="M 1410.0 690.0 L 800.0 140.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><path d="M 800.0 140.0 L 340.0 740.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><text x="576.0" y="434.0" font-family="Inter, Arial" font-size="11" fill="#0b7285">N:M</text><path d="M 340.0 740.0 L 800.0 940.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><path d="M 800.0 940.0 L 800.0 140.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><path d="M 800.0 140.0 L 1260.0 740.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><text x="1036.0" y="434.0" font-family="Inter, Arial" font-size="11" fill="#0b7285">1:N</text><path d="M 800.0 140.0 L 800.0 650.0" stroke="#0b7285" stroke-width="1.2" marker-end="url(#arrow)" fill="none"/><text x="806.0" y="389.0" font-family="Inter, Arial" font-size="11" fill="#0b7285">1:N</text>
+</svg>
