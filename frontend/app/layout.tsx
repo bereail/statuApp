@@ -36,9 +36,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // Tip: si alguna extensión inyecta atributos al <html>/<body>, podés agregar suppressHydrationWarning
-    <html lang="es">
-      <body className={`${inter.className} min-h-screen bg-white text-zinc-900`}>
+    <html lang="es" suppressHydrationWarning>
+      <body className="min-h-screen bg-white text-zinc-900" suppressHydrationWarning>
         {/* Enlace “saltar al contenido” para accesibilidad con teclado */}
         <a
           href="#contenido"
@@ -56,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav aria-label="Principal" className="ml-auto flex gap-4 text-sm">
               <Link href="/buscar">Buscar</Link>
               <Link href="/mapa">Mapa</Link>
+              <Link href="/estatuas">Estatuas</Link>
             </nav>
           </div>
         </header>
