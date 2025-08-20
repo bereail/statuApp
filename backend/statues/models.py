@@ -1,37 +1,30 @@
-from django.db import models
-from django.utils.text import slugify
+from dataclasses import dataclass
 
-class Tag(models.Model):
-    name = models.CharField(max_length=80, unique=True)
-    slug = models.SlugField(max_length=90, unique=True, blank=True)
+@dataclass
+class StatueData:
+    slug: str
+    titulo: str
+    descripcion: str
+    barrio: str
+    lat: float
+    lng: float
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)[:90]
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
-
-class Statue(models.Model):
-    slug = models.SlugField(max_length=120, unique=True)
-    title = models.CharField(max_length=140)
-    author = models.CharField(max_length=140, blank=True)
-    year = models.IntegerField(null=True, blank=True)
-    material = models.CharField(max_length=120, blank=True)
-    style = models.CharField(max_length=120, blank=True)
-    description_md = models.TextField(blank=True)
-    lat = models.FloatField()
-    lng = models.FloatField()
-    address = models.CharField(max_length=160, blank=True)
-    barrio = models.CharField(max_length=120, blank=True)
-    image_url = models.URLField(blank=True)
-    sources = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ["title"]
-
-    def __str__(self):
-        return self.title
+# Hardcode inicial
+ESTATUAS = [
+    StatueData(
+        slug="mujer-con-nino-rosedal",
+        titulo="Mujer con Niño (Rosedal)",
+        descripcion="Escultura ubicada en el Rosedal del Parque Independencia.",
+        barrio="Parque Independencia",
+        lat=-32.9566,
+        lng=-60.6604
+    ),
+    StatueData(
+        slug="monumento-a-la-madre",
+        titulo="Monumento a la Madre",
+        descripcion="Obra creada por José Gerbino en 1967, ubicada en el Parque Independencia.",
+        barrio="Parque Independencia",
+        lat=-32.9555,
+        lng=-60.6610
+    ),
+]

@@ -1,8 +1,7 @@
-# app: statues
-from rest_framework.routers import DefaultRouter
-from .views import StatueViewSet
+from django.urls import path
+from .views import lista_estatuas, detalle_estatua
 
-router = DefaultRouter()
-router.register(r"statues", StatueViewSet, basename="statues")
-
-urlpatterns = router.urls
+urlpatterns = [
+    path("estatuas/", lista_estatuas, name="statues_list"),
+    path("estatuas/<slug:slug>/", detalle_estatua, name="statue_detail"),
+]

@@ -1,9 +1,17 @@
-from rest_framework import viewsets, filters
-from .models import Statue
-from .serializers import StatueSerializer
+import json
+from pathlib import Path
+from django.http import JsonResponse
 
-class StatueViewSet(viewsets.ModelViewSet):
-    queryset = Statue.objects.all()
-    serializer_class = StatueSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ["title", "author", "material", "style", "barrio", "address", "description_md", "slug"]
+DATA_PATH = Path(__file__).resolve().parent / "data" / "estatuas.json"
+
+with open(DATA_PATH, encoding="utf-8") as f:
+    ESTATUAS = json.load(f)
+
+def lista_estatuas(request):
+    return JsonResponse(ESTATUAS, safe=False)
+
+def detalle_estatua(request, slug):
+    estatua = next((e for e in ESTATUAS if e["slug"] == slug), None)
+    if estatua:
+        return JsonResponse(estatua)
+    return JsonResponse({"error": "No encontrada"}, status=404)
