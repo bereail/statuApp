@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "monumento-madre",
+    "titulo": "Monumento a la Madre",
+    "anio": 1967,
+    "barrio": "Parque Independencia",
+    "descripcion": "Obra creada por el escultor José Gerbino...",
+    "imagen": "/static/estatuas/monumento_madre.jpg",
+    "lat": -32.9566,
+    "lng": -60.6604
+  },
+  {
+    "slug": "mujer-con-nino-rosedal",
+    "titulo": "Mujer con Niño",
+    "anio": 1930,
+    "barrio": "Parque Independencia",
+    "descripcion": "Escultura ubicada en el Rosedal...",
+    "imagen": "/static/estatuas/mujer_con_nino.jpg",
+    "lat": -32.9561,
+    "lng": -60.6599
+  }
+]
