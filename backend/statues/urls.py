@@ -1,8 +1,12 @@
-# backend/statues/urls.py
-from django.urls import path
-from .views_mock import StatueListMock, StatueDetailMock
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import StatueViewSet
+
+router = DefaultRouter()
+# /api/v1/statues/  y  /api/v1/statues/<slug>/
+router.register(r"statues", StatueViewSet, basename="statue")
 
 urlpatterns = [
-    path("estatuas/", StatueListMock.as_view(), name="estatuas-list"),
-    path("estatuas/<slug:slug>/", StatueDetailMock.as_view(), name="estatuas-detail"),
+    # Endpoints reales DRF
+    path("", include(router.urls)),
 ]

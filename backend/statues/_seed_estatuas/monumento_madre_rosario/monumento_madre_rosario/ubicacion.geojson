@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "slug": "monumento-a-la-madre-rosario",
+        "title": "Monumento a la Madre (Rosedal)",
+        "year": 1967,
+        "note": "Coordenadas aproximadas del Rosedal; no necesariamente el pedestal exacto."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.66,
+          -32.9587
+        ]
+      }
+    }
+  ]
+}

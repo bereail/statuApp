@@ -1,4 +1,3 @@
-# statu_api/urls.py  (PROYECTO)
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
@@ -7,10 +6,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", RedirectView.as_view(url="/api/v1/", permanent=False)),  # ← / redirige a la API
-    path("", include("statu_api.api_urls")),  # ← incluye las rutas de la API
+
+    # Home → redirige a la raíz de la API
+    path("", RedirectView.as_view(url="/api/v1/", permanent=False)),
+
+    # API v1 de la app statues
+    path("api/v1/", include("statues.urls")),
 ]
 
-# (solo en desarrollo) servir media si la usás
-urlpatterns += static(getattr(settings, "MEDIA_URL", "/media/"),
-                      document_root=getattr(settings, "MEDIA_ROOT", "media"))
+# Servir /media en desarrollo
+urlpatterns += static(
+    getattr(settings, "MEDIA_URL", "/media/"),
+    document_root=getattr(settings, "MEDIA_ROOT", "media"),
+)

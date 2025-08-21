@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "slug": "busto-isaac-newell",
+        "title": "Busto de Isaac Newell (Parque Independencia)",
+        "note": "Coordenadas aproximadas frente al Estadio Marcelo Bielsa.",
+        "vandalismo": "Decapitado en 2021"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.6628,
+          -32.9581
+        ]
+      }
+    }
+  ]
+}

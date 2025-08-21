@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "slug": "monumento-a-alem-parque-alem",
+        "title": "Monumento a Leandro N. Alem (Parque Alem)",
+        "year": 1943,
+        "note": "Coordenadas aproximadas del Parque Alem; no necesariamente pedestal exacto."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.65,
+          -32.9
+        ]
+      }
+    }
+  ]
+}
