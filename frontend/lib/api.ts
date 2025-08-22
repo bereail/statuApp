@@ -1,33 +1,36 @@
-/*es el lugar donde conviene centralizar toda la lógica de acceso al backend.*/
+// lib/api.ts
 
+/* 
+  Este archivo centraliza la lógica de acceso al backend.
+  Todo el frontend debe usar fetchJson() para consumir la API.
+*/
 
-// Define la constante API_BASE tomando la variable de entorno NEXT_PUBLIC_API_BASE.
-// El "!" al final le dice a TypeScript que confíe en que siempre va a estar definida.
-export const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
+// URL base de tu backend
+// 🔑 La podés definir en .env.local como:
+// NEXT_PUBLIC_API_BASE="http://127.0.0.1:8000/api/v1"
+export const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE || "http://127.0.0.1:8000/api/v1";
 
 /**
  * Función genérica para hacer fetch a la API y obtener JSON tipado.
- * @param path - El endpoint relativo (ej: "/estatuas/")
- * @param init - Opcional: configuración extra para fetch (headers, método, body, etc.)
- * @returns Promesa con el resultado parseado como JSON (del tipo T).
+ * @param path - Endpoint relativo (ej: "/statues/").
+ * @param init - Config extra para fetch (headers, método, body, etc.).
+ * @returns Promesa con JSON parseado.
  */
 export async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
-  // Hace la petición HTTP combinando la base de la API con el path recibido.
-  const res = await fetch(`${API_BASE}${path}`, {
-    headers: { Accept: "application/json" }, // fuerza que el backend devuelva JSON
-    ...init, // permite sobreescribir o agregar configuración extra
+  // construye la URL final
+  const url = `${API_BASE}${path}`;
+
+  // 👀 Log de depuración → se ve en la terminal de Next.js (porque es Server Component)
+  console.log("➡️ Llamando a:", url);
+
+  const res = await fetch(url, {
+    headers: { Accept: "application/json" },
+    ...init,
   });
 
-  // Si la respuesta no es "ok" (status 200–299), lanza un error con el código y el texto devuelto.
+  // manejo de errores
   if (!res.ok) throw new Error(`HTTP ${res.status} ${await res.text()}`);
 
-  // Si todo salió bien, parsea y devuelve el JSON.
   return res.json();
 }
-
-
-/*API_BASE es la URL base de tu backend (por ejemplo http://localhost:8000/api/v1).
-
-fetchJson es un wrapper genérico para hacer peticiones a tu API, controlar errores y recibir datos tipados en TypeScript.
-
-Lo usás en tu frontend Next.js para consumir endpoints como /estatuas/ o /estatuas/{slug}/ que definiste en tu API.*/

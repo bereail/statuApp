@@ -9,7 +9,7 @@ export default function HomePage() {
       <div className="flex gap-3">
         <Link className="underline" href="/buscar">Ir a Buscar</Link>
         <Link className="underline" href="/mapa">Ver Mapa</Link>
-        <Link className="underline" href="/estatuas">Estatuas</Link>
+        <Link className="underline" href="/statues">Estatuas</Link>
       </div>
     </section>
   );
