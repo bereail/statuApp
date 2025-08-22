@@ -38,7 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" suppressHydrationWarning>
       <body className="min-h-screen bg-white text-zinc-900" suppressHydrationWarning>
-        {/* Enlace “saltar al contenido” para accesibilidad con teclado */}
         <a
           href="#contenido"
           className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white border rounded px-3 py-2"
@@ -48,7 +47,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur p-3">
           <div className="mx-auto max-w-5xl flex items-center gap-3">
-            {/* 4) Navegación con <Link> para evitar recargas completas */}
             <Link href="/" className="font-semibold">
               StatuApp
             </Link>
@@ -60,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
 
-        {/* 5) main con id de ancla y landmark semántico */}
+
         <main id="contenido" className="mx-auto max-w-5xl p-4">
           {children}
         </main>
