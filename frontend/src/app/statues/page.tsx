@@ -1,6 +1,4 @@
-// app/statues/page.tsx
 import EstatuasClient from "./client";
-
 export default function Page() {
   return (
     <section className="p-4">

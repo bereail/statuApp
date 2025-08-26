@@ -1,5 +1,5 @@
 // app/buscar/page.tsx  (Server Component o Client, como prefieras)
-import { fetchJson } from "../../lib/api";
+import { fetchJson } from "lib/api";
 
 type Paginated<T> = { count: number; next: string|null; previous: string|null; results: T[] };
 type Statue = { slug: string; title: string; barrio?: string|null };
