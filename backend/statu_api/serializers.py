@@ -1,62 +1,40 @@
+# statu_api/serializers.py
 from rest_framework import serializers
-from statues.models import Statue, Author, Location, Media, Tag
+from statues.models import Statue  # ⬅️ ajusta si tu app no se llama "statues"
 
-
-class AuthorMiniSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Author
-        fields = ("name", "birth_year", "death_year")
-
-
-class LocationMiniSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Location
-        fields = ("name", "barrio", "lat", "lng")
-
-
-class MediaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Media
-        fields = ("kind", "url", "caption", "credit", "created_at")
-
-
-class TagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tag
-        fields = ("name",)
-
-
+# LISTA (para /api/v1/statues/)
 class StatueListSerializer(serializers.ModelSerializer):
-    author = AuthorMiniSerializer(read_only=True)
-    location = LocationMiniSerializer(read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
-    image = serializers.SerializerMethodField()
+    # Alias para los nombres que espera el frontend
+    titulo = serializers.CharField(source='title')
+    ubicacion = serializers.CharField(source='location', required=False, allow_null=True)
+
+    # No hay campo de imagen en el modelo: devolvemos None por ahora
+    imagen_destacada = serializers.SerializerMethodField()
 
     class Meta:
         model = Statue
-        fields = (
-            "slug", "title", "barrio", "year", "material",
-            "author", "location", "tags", "image"
-        )
+        fields = ['slug', 'titulo', 'ubicacion', 'imagen_destacada']
 
-    def get_image(self, obj):
-        # portada: primera foto si existe
-        photo = next((m for m in obj.media.all() if m.kind == "foto"), None)
-        return photo.url if photo else None
+    def get_imagen_destacada(self, obj):
+        # Si más adelante agregás un ImageField (ej. obj.image.url) o una propiedad (obj.cover_url),
+        # devolvela acá. Mientras tanto, None.
+        return None
 
 
+# DETALLE (para /api/v1/statues/<slug>/)
 class StatueDetailSerializer(serializers.ModelSerializer):
-    author = AuthorMiniSerializer(read_only=True)
-    location = LocationMiniSerializer(read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
-    media = MediaSerializer(many=True, read_only=True)
+    titulo = serializers.CharField(source='title')
+    ubicacion = serializers.CharField(source='location', required=False, allow_null=True)
+    descripcion_md = serializers.CharField(source='description_md', required=False, allow_null=True)
+    anio = serializers.IntegerField(source='year', required=False, allow_null=True)
+    autor = serializers.CharField(source='author', required=False, allow_null=True)
 
     class Meta:
         model = Statue
-        fields = (
-            "id", "slug", "title", "description_md", "year", "material",
-            "barrio", "lat", "lng",
-            "resumen_corto", "resumen_extenso", "dato_curioso",
-            "author", "location", "tags", "media",
-            "is_published", "created_at", "updated_at"
-        )
+        fields = [
+            'slug', 'titulo', 'ubicacion', 'descripcion_md', 'anio',
+            'barrio', 'lat', 'lng',
+            'resumen_corto', 'resumen_extenso', 'dato_curioso',
+            'autor', 'material', 'tags',
+            'is_published', 'created_at', 'updated_at',
+        ]

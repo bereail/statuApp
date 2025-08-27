@@ -1,34 +1,16 @@
-from rest_framework import viewsets, mixins
-from rest_framework.permissions import AllowAny
-from django.db.models import Prefetch
-from .models import Statue, Media
-# IMPORT ABSOLUTO (no relativo)
+# statues/views.py
+from rest_framework import viewsets
+from statues.models import Statue
 from statu_api.serializers import StatueListSerializer, StatueDetailSerializer
 
-
-class StatueViewSet(mixins.ListModelMixin,
-                    mixins.RetrieveModelMixin,
-                    viewsets.GenericViewSet):
-    """
-    GET /api/v1/statues/          → lista
-    GET /api/v1/statues/<slug>/   → detalle (lookup por slug)
-    """
-    permission_classes = [AllowAny]
+class StatueViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = (
+        Statue.objects.filter(is_published=True)
+        .select_related("author", "location")
+        .prefetch_related("tags", "media")  # ajustá 'media' si tu related_name es otro
+    )
     lookup_field = "slug"
-
-    def get_queryset(self):
-        # Query optimizada
-        return (
-            Statue.objects.filter(is_published=True)
-            .select_related("author", "location")
-            .prefetch_related(
-                "tags",
-                Prefetch("media", queryset=Media.objects.order_by("-created_at"))
-            )
-            .order_by("title")
-        )
+    lookup_url_kwarg = "slug"
 
     def get_serializer_class(self):
-        if self.action == "retrieve":
-            return StatueDetailSerializer
-        return StatueListSerializer
+        return StatueDetailSerializer if self.action == "retrieve" else StatueListSerializer

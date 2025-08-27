@@ -1,35 +1,42 @@
 // lib/services/statues.ts
-import { fetchJson } from "../api";
-import type { Paginated, StatueList } from "../../types/statues";
+import { fetchJson } from "lib/api";
+import type { Paginated } from "types/statues";
 
-function normalizeImage(r: any): string | null {
-  return r.image ?? r.imagen ?? r.imagen_destacada ?? r.thumbnail ?? null;
+type StatueListApi = {
+  slug: string;
+  titulo: string;
+  barrio?: string | null;
+  imagen_destacada?: string | null;
+};
+
+export type StatueList = {
+  slug: string;
+  title: string;
+  barrio?: string | null;
+  image?: string | null;
+};
+
+function mapListItem(i: StatueListApi): StatueList {
+  return {
+    slug: i.slug,
+    title: i.titulo,                 // 👈 del back viene "titulo"
+    barrio: i.barrio ?? null,
+    image: i.imagen_destacada ?? null,
+  };
 }
 
 export const StatuesAPI = {
-  list: async (q?: string) => {
-    const data = await fetchJson<Paginated<any>>(`/statues/${q ? `?q=${encodeURIComponent(q)}` : ""}`);
-    const results: StatueList[] = data.results.map((r: any) => ({
-      slug: r.slug,
-      title: r.title ?? r.titulo ?? "Sin título",
-      barrio: r.barrio ?? null,
-      image: normalizeImage(r),
-    }));
-    return { ...data, results };
+  async list(q: string) {
+    const search = q ? `?q=${encodeURIComponent(q)}` : "";
+    const data = await fetchJson<Paginated<StatueListApi>>(`/statues/${search}`);
+    return {
+      ...data,
+      results: data.results.map(mapListItem),   // 👈 normaliza para tu UI
+    } as Paginated<StatueList>;
   },
 
-  detail: async (slug: string) => {
-    const r = await fetchJson<any>(`/statues/${slug}/`);
-    return {
-      slug: r.slug,
-      title: r.title ?? r.titulo ?? "Sin título",
-      barrio: r.barrio ?? null,
-      year: r.year ?? r.anio ?? null,
-      material: r.material ?? null,
-      description_md: r.description_md ?? r.descripcion_md ?? null,
-      lat: r.lat ?? null,
-      lng: r.lng ?? null,
-      image: normalizeImage(r),
-    };
+  async getOne(slug: string) {
+    // Si querés detalle, podés reutilizar tu toStatueDetail(ui)
+    return fetchJson(`/statues/${slug}/`);
   },
 };
