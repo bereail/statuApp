@@ -1,35 +1,45 @@
-// components/ActionsBar.tsx
 "use client";
+import Link from "next/link";
 
-export default function ActionsBar(
+type NavigatorWithShare = Navigator & {
+  share?: (data: { title?: string; text?: string; url?: string }) => Promise<void>;
+};
+
+export default function ActionBar(
   { lat, lng, title }: { lat?: number | null; lng?: number | null; title: string }
 ) {
   const hasCoords = lat != null && lng != null;
 
+  const handleShare = () => {
+    const nav = navigator as NavigatorWithShare;
+    if (nav.share) nav.share({ title, url: location.href }).catch(console.error);
+  };
+
   return (
     <div className="mt-3 flex flex-wrap gap-2 text-sm">
       {hasCoords && (
-        <a
+        <Link
           className="px-3 py-1 rounded-full border hover:bg-slate-50"
           href={`/mapa?lat=${lat}&lng=${lng}`}
         >
           Ver en mapa
-        </a>
+        </Link>
       )}
 
       {hasCoords && (
         <button
           className="px-3 py-1 rounded-full border hover:bg-slate-50"
           onClick={() => navigator.clipboard.writeText(`${lat}, ${lng}`)}
+          type="button"
         >
           Copiar coordenadas
         </button>
       )}
 
-      {/* Solo si existe la Web Share API */}
       <button
         className="px-3 py-1 rounded-full border hover:bg-slate-50"
-        onClick={() => (navigator as any).share?.({ title, url: location.href })}
+        onClick={handleShare}
+        type="button"
       >
         Compartir
       </button>

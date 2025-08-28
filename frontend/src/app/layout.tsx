@@ -1,56 +1,38 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from 'next';
-import Link from 'next/link';
-import { Inter } from 'next/font/google';
 import './globals.css';
-
-// 1) Tipografía optimizada (auto-subset + swap)
+import { Inter } from 'next/font/google';
+import Link from 'next/link';
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
-// 2) Metadatos sólidos y URL base para construir OG absolutas
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
-  title: {
-    default: 'StatuApp',
-    template: '%s · StatuApp',
-  },
-  description: 'Catálogo de estatuas de Rosario con QR',
-  openGraph: {
-    title: 'StatuApp',
-    description: 'Catálogo de estatuas de Rosario con QR',
-    url: '/',
-    siteName: 'StatuApp',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'StatuApp',
-    description: 'Catálogo de estatuas de Rosario con QR',
-  },
-};
 
-// 3) Viewport (tema del navegador, mobile-friendly)
-export const viewport: Viewport = {
-  themeColor: '#ffffff',
-};
 
-// app/layout.tsx
+export const metadata: Metadata = { /* …igual que el tuyo… */ };
+export const viewport: Viewport = { themeColor: '#ffffff' };
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
-      <body className="min-h-dvh antialiased">
-        <header className="sticky top-0 z-10 bg-[var(--bg)]/80 backdrop-blur border-b border-[var(--border)]">
-          <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-4">
-            <a href="/" className="font-semibold">StatuApp</a>
-            <div className="ml-auto flex gap-3 text-sm">
-              <a className="hover:underline" href="/statues">Estatuas</a>
-              <a className="hover:underline" href="/mapa">Mapa</a>
-              <a className="hover:underline" href="/buscar">Buscar</a>
+    // 👇 Esto fija el tema "light" sin depender del SO
+    <html lang="es" data-theme="light" suppressHydrationWarning>
+      {/* 👇 base de colores legibles: fondo claro + texto */}
+      <body className={`min-h-dvh antialiased bg-base-100 text-base-content ${inter.className}`}
+      suppressHydrationWarning>
+        <header className="sticky top-0 z-10 bg-base-100/80 backdrop-blur border-b border-base-200">
+          <nav className="navbar mx-auto max-w-6xl px-4">
+            <div className="navbar-start">
+              <Link  href="/" className="font-semibold text-lg">StatuApp</Link >
+            </div>
+            <div className="navbar-end gap-2">
+              <Link className="btn btn-ghost btn-sm" href="/statues">Estatuas    </Link>
+              <a className="btn btn-ghost btn-sm" href="/mapa">  Mapa    </a>
+              <a className="btn btn-primary btn-sm" href="/buscar">  Buscar   </a>
             </div>
           </nav>
         </header>
+
         <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
-        <footer className="mx-auto max-w-6xl px-4 py-8 text-sm text-[var(--muted)]">
+
+        <footer className="mx-auto max-w-6xl px-4 py-8 text-sm text-base-content/70">
           © {new Date().getFullYear()} StatuApp — Rosario
         </footer>
       </body>

@@ -1,12 +1,10 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import StatueViewSet
+from rest_framework import routers
+from .api_views import StatueViewSet
 
-router = DefaultRouter()
-# /api/v1/statues/  y  /api/v1/statues/<slug>/
-router.register(r"statues", StatueViewSet, basename="statue")
+router = routers.DefaultRouter()
+router.register(r"statues", StatueViewSet, basename="statues")
 
 urlpatterns = [
-    # Endpoints reales DRF
     path("", include(router.urls)),
 ]

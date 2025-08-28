@@ -1,4 +1,5 @@
 /* la ruta / */
+import StatueIntro from "components/StatueIntro";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -35,7 +36,9 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+
       </div>
+                <StatueIntro />
     </section>
   );
 }

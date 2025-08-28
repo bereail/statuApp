@@ -1,86 +1,109 @@
 // app/statues/[slug]/page.tsx
+import Gallery from "./galery";
+import Accordion from "./ui-accordion";
+import ShowMarkdown from "./ui-show-markdown";
+import ScrollCta from "./ui-scroll-cta";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import InfoSection from "components/InfoSection";
-import ActionsBar from "components/ActionBar";
 
-type StatueDetail = {
+type Medio = {
+  kind: "foto" | "audio" | "doc";
+  url: string;
+  caption?: string | null;
+  credit?: string | null;
+};
+
+type Estatua = {
   slug: string;
   title: string;
   barrio?: string | null;
   year?: number | null;
   material?: string | null;
-  description_md?: string | null;
   resumen_corto?: string | null;
-  resumen_extenso?: string | null;
+  resumen_extenso?: string | null;   // historia en MD
+  description_md?: string | null;    // fallback en MD
   dato_curioso?: string | null;
+  media: Medio[];
   lat?: number | null;
   lng?: number | null;
-  image?: string | null;
 };
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
-if (!API_BASE) throw new Error("Falta NEXT_PUBLIC_API_BASE en .env.local");
+const toAbs = (u?: string | null) =>
+  u ? new URL(u, process.env.NEXT_PUBLIC_API_BASE!).toString() : null;
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const res = await fetch(`${API_BASE}/statues/${slug}/`, { next: { revalidate: 60 } });
-  if (!res.ok) return { title: "Estatua no encontrada" };
-  const data: StatueDetail = await res.json();
-  return { title: `${data.title} | StatuApp` };
-}
+// ✅ Next 15: params es Promise
+export default async function StatuePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params; // <- await
 
-export default async function StatuePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const url = `${API_BASE}/statues/${slug}/`;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/statues/${slug}`, {
+    cache: "no-store",
+  });
 
-  const res = await fetch(url, { headers: { Accept: "application/json" }, next: { revalidate: 60 } });
   if (res.status === 404) return notFound();
-  if (!res.ok) throw new Error(`HTTP ${res.status} al pedir ${url}`);
+  if (!res.ok) throw new Error("No se pudo cargar la estatua");
 
-  const s: StatueDetail = await res.json();
-  const hasCoords = s.lat != null && s.lng != null;
+  const s: Estatua = await res.json();
+
+  const fotos =
+    (s.media ?? [])
+      .filter((m) => m.kind === "foto")
+      .map((m) => ({ url: toAbs(m.url)!, caption: m.caption ?? null, credit: m.credit ?? null }));
+
+  const historiaMD = s.resumen_extenso || s.description_md || null;
 
   return (
-    <article className="p-4 space-y-4">
-      <a href="/statues" className="text-blue-600 underline">&larr; Volver</a>
-
-      <header>
-        <h1 className="text-2xl font-semibold">{s.title}</h1>
-        <p className="text-sm text-gray-600">
-          {s.barrio ?? "s/barrio"} · {s.year ?? "s/f"} · {s.material ?? "s/material"}
+    <article className="grid gap-6">
+      <header className="grid gap-1">
+        <Link href="/statues" className="underline">Volver a Estatuas</Link>
+        <h1 className="text-2xl font-bold">{s.title}</h1>
+        <p className="text-sm opacity-70">
+          {s.barrio ?? "—"} {s.year ? `• ${s.year}` : ""} {s.material ? `• ${s.material}` : ""}
         </p>
-
-        {/* ✅ acciones interactivas en componente cliente */}
-        <ActionsBar lat={s.lat} lng={s.lng} title={s.title} />
       </header>
 
-      {s.image && <img src={s.image} alt={s.title} className="rounded-xl max-w-xl" />}
+      {s.resumen_corto && <p>{s.resumen_corto}</p>}
 
-      {s.resumen_corto && <p className="mt-2">{s.resumen_corto}</p>}
+      {fotos.length > 0 && <Gallery items={fotos} />}
 
-      {(s.description_md || s.resumen_extenso) && (
-        <InfoSection title="Historia completa">
-          <div className="whitespace-pre-wrap">
-            {s.description_md ?? s.resumen_extenso}
-          </div>
-        </InfoSection>
+      {historiaMD && (
+        <Accordion title="Historia completa" id="historia">
+          <ShowMarkdown md={historiaMD} />
+        </Accordion>
       )}
 
       {s.dato_curioso && (
-        <InfoSection title="Dato curioso">
-          <p>{s.dato_curioso}</p>
-        </InfoSection>
+        <Accordion title="Dato curioso">
+          <p className="text-sm opacity-90">{s.dato_curioso}</p>
+        </Accordion>
       )}
 
-      <InfoSection title="Ficha técnica" defaultOpen>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
-          {s.year != null && <li><b>Año:</b> {s.year}</li>}
-          {s.material && <li><b>Material:</b> {s.material}</li>}
-          {s.barrio && <li><b>Barrio:</b> {s.barrio}</li>}
-          {hasCoords && <li><b>Coordenadas:</b> {s.lat}, {s.lng}</li>}
-        </ul>
-      </InfoSection>
+      <Accordion title="Ficha técnica">
+        <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+          <div><dt className="font-medium">Año</dt><dd>{s.year ?? "—"}</dd></div>
+          <div><dt className="font-medium">Material</dt><dd>{s.material ?? "—"}</dd></div>
+          <div><dt className="font-medium">Barrio</dt><dd>{s.barrio ?? "—"}</dd></div>
+          <div><dt className="font-medium">Coordenadas</dt>
+            <dd>{(s.lat != null && s.lng != null) ? `${s.lat}, ${s.lng}` : "—"}</dd>
+          </div>
+        </dl>
+      </Accordion>
+
+      {historiaMD && <ScrollCta to="#historia" />}
     </article>
   );
+}
+
+// (Opcional pero recomendado) si usás SEO dinámico:
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  return { title: `Estatua · ${slug}` };
 }

@@ -2,16 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-
-:root{
-  --bg:#F8F7F4; --fg:#232323; --muted:#6B7280; --accent:#2D6CDF; --card:#F1F5F9; --border:#E5E7EB;
+/* Variables que usás en el header/footer */
+:root {
+  --bg: #ffffff;
+  --border: #e5e7eb; /* slate-200 */
+  --muted: #6b7280;  /* slate-500 */
 }
-html,body{ background:var(--bg); color:var(--fg); }
 
-/* globals.css */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+/* (Opcional) modo oscuro manual si querés */
+@media {
+  html, body { background: #ffffff; color: #111827; }
+  :root {
+    --bg: #0b0b0c;
+    --border: #27272a; /* zinc-800 */
+    --muted: #9ca3af;  /* slate-400 */
+  }
 }
+
+/* Ejemplito: estilo base de body (no necesario si usás DaisyUI) */
+body { background: var(--bg); }

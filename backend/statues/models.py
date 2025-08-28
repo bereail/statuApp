@@ -49,9 +49,7 @@ class Tag(models.Model):
 # ESTATUAS
 # =========================
 class Statue(models.Model):
-    # ID único generado como UUID
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    # Identificador slug (para URLs)
     slug = models.SlugField(unique=True, max_length=140)
     title = models.CharField(max_length=180)
     description_md = models.TextField(blank=True)
@@ -61,38 +59,33 @@ class Statue(models.Model):
     lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     lng = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
 
-    # Extras: resúmenes de distintos niveles de detalle
     resumen_corto = models.CharField(max_length=350, blank=True)
     resumen_extenso = models.TextField(blank=True)
     dato_curioso = models.CharField(max_length=500, blank=True)
 
-    # Relaciones
-    author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name="statues")
-    location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.SET_NULL, related_name="statues")
-    # Publicada o en borrador
+    author = models.ForeignKey('Author', null=True, blank=True, on_delete=models.SET_NULL, related_name="statues")
+    location = models.ForeignKey('Location', null=True, blank=True, on_delete=models.SET_NULL, related_name="statues")
     is_published = models.BooleanField(default=True)
+    tags = models.ManyToManyField('Tag', blank=True, related_name="statues")
 
-    # Relación N:M con etiquetas
-    tags = models.ManyToManyField(Tag, blank=True, related_name="statues")
-
-    # Tiempos de creación y actualización
-    created_at = models.DateTimeField(default=timezone.now, editable=False)  # antes: auto_now_add=True
+    created_at = models.DateTimeField(auto_now_add=True)   # ← cambio recomendado
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         indexes = [
-            models.Index(fields=["slug"]),           # búsqueda rápida por slug
-            models.Index(fields=["lat", "lng"]),     # búsquedas geográficas
-            models.Index(fields=["author"]),         # filtrar por autor
-            models.Index(fields=["location"]),       # filtrar por ubicación
+            models.Index(fields=["slug"]),
+            models.Index(fields=["lat", "lng"]),
+            models.Index(fields=["author"]),
+            models.Index(fields=["location"]),
         ]
 
     def __str__(self): return self.title
 
+# ---------- Medios ----------
+def upload_to_medios(instance, filename):
+    slug = instance.statue.slug if instance.statue_id else "misc"
+    return f"statues/{slug}/{filename}"
 
-# =========================
-# MEDIOS (fotos, documentos, audios…)
-# =========================
 class Media(models.Model):
     class Kind(models.TextChoices):
         PHOTO = "foto", "Foto"
@@ -100,10 +93,34 @@ class Media(models.Model):
         DOC = "doc", "Documento"
 
     statue = models.ForeignKey(Statue, on_delete=models.CASCADE, related_name="media")
-    kind = models.CharField(max_length=10, choices=Kind.choices)
-    url = models.URLField(max_length=600)
+    kind = models.CharField(max_length=10, choices=Kind.choices, default=Kind.PHOTO)
+    # Si querés subir desde admin:
+    file    = models.ImageField(upload_to=upload_to_medios, blank=True, null=True)  # ← nuevo
+    url     = models.URLField(max_length=600, blank=True)    
+
     caption = models.CharField(max_length=300, blank=True)
     credit = models.CharField(max_length=180, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self): return f"{self.statue.slug} — {self.kind}"
+
+
+def upload_to_medios(instance, filename):
+    slug = instance.statue.slug if instance.statue_id else "misc"
+    return f"statues/{slug}/{filename}"
+
+class Media(models.Model):
+    class Kind(models.TextChoices):
+        PHOTO = "foto", "Foto"
+        AUDIO = "audio", "Audio"
+        DOC   = "doc",   "Documento"
+
+    statue  = models.ForeignKey(Statue, on_delete=models.CASCADE, related_name="media")
+    kind    = models.CharField(max_length=10, choices=Kind.choices, default=Kind.PHOTO)
+    file    = models.ImageField(upload_to=upload_to_medios, blank=True, null=True)  # ← este campo
+    url     = models.URLField(max_length=600, blank=True)                            # opcional (para lo ya cargado)
+    caption = models.CharField(max_length=300, blank=True)
+    credit  = models.CharField(max_length=180, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
