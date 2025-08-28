@@ -14,6 +14,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     // 👇 Esto fija el tema "light" sin depender del SO
     <html lang="es" data-theme="light" suppressHydrationWarning>
+      <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
       {/* 👇 base de colores legibles: fondo claro + texto */}
       <body className={`min-h-dvh antialiased bg-base-100 text-base-content ${inter.className}`}
       suppressHydrationWarning>

@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",   // ← importante
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: { extend: {} },
-  plugins: [require("daisyui")],
-  daisyui: { themes: ["light", "dark"] }, // opcional
-};
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  darkMode: 'class',               // evita 'media' (que sigue el SO)
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['light'],             // solo tema claro
+    logs: false,
+  },
+}
