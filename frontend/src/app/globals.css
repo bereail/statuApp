@@ -2,22 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables que usás en el header/footer */
+/* Variables globales para el tema claro */
 :root {
   --bg: #ffffff;
   --border: #e5e7eb; /* slate-200 */
   --muted: #6b7280;  /* slate-500 */
 }
 
-/* (Opcional) modo oscuro manual si querés */
-@media {
-  html, body { background: #ffffff; color: #111827; }
-  :root {
-    --bg: #0b0b0c;
-    --border: #27272a; /* zinc-800 */
-    --muted: #9ca3af;  /* slate-400 */
-  }
+/* Estilo base del body */
+body {
+  @apply bg-white text-black;
 }
-
-/* Ejemplito: estilo base de body (no necesario si usás DaisyUI) */
-body { background: var(--bg); }
