@@ -1,44 +1,38 @@
-/* la ruta / */
-import StatueIntro from "components/StatueIntro";
+// app/page.tsx
 import Link from "next/link";
+import StatueIntro from "components/StatueIntro";
 
 export default function HomePage() {
   return (
-    <section className="grid gap-6 place-items-center py-10">
-      <h1 className="text-3xl font-bold">Bienvenida a StatuApp</h1>
-      <p className="text-lg text-center max-w-xl">
-        Escaneá un QR o explorá el patrimonio de Rosario por barrio, autor o palabra clave.
-      </p>
+    <section className="grid place-items-center gap-10">
+      {/* HERO */}
+      <div className="text-center max-w-3xl space-y-4">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+          Bienvenida a <span className="text-primary">StatuApp</span>
+        </h1>
+        <p className="text-base sm:text-lg text-base-content/80">
+          Escaneá un QR o explorá el patrimonio de Rosario por barrio, autor o palabra clave.
+        </p>
 
-      {/* Botones con DaisyUI */}
-      <div className="flex flex-wrap gap-4 justify-center">
-        <Link href="/buscar" className="btn btn-primary">
-          🔎 Ir a Buscar
-        </Link>
-        <Link href="/mapa" className="btn btn-secondary">
-          🗺️ Ver Mapa
-        </Link>
-        <Link href="/statues" className="btn btn-accent">
-          🏛️ Estatuas
-        </Link>
-      </div>
-
-      {/* Una card opcional de bienvenida */}
-      <div className="card w-96 bg-base-100 shadow-xl mt-6">
-        <div className="card-body items-center text-center">
-          <h2 className="card-title">Explorá Rosario</h2>
-          <p>
-            Descubrí historias, autores y curiosidades de las estatuas de la ciudad.
-          </p>
-          <div className="card-actions justify-end">
-            <Link href="/statues" className="btn btn-outline btn-primary">
-              Ver Estatuas
-            </Link>
-          </div>
+        {/* CTAs */}
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <Link href="/buscar" className="btn btn-primary btn-md">
+            🔎 Buscar
+          </Link>
+          <Link href="/mapa" className="btn btn-secondary btn-md">
+            🗺️ Ver Mapa
+          </Link>
+          <Link href="/statues" className="btn btn-outline btn-md">
+            🏛️ Ver Estatuas
+          </Link>
         </div>
-
       </div>
-                <StatueIntro />
+
+
+      {/* INTRO (tu componente actual) */}
+      <div className="w-full max-w-5xl">
+        <StatueIntro />
+      </div>
     </section>
   );
 }

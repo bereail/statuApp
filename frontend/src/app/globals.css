@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables globales (tema claro) */
+/* Tema claro base */
 :root {
   --bg: #ffffff;
   --border: #e5e7eb; /* slate-200 */
   --muted: #6b7280;  /* slate-500 */
 }
 
-/* Forzar modo claro en todo el sitio */
-html, body {
-  @apply bg-white text-black;
-}
+/* Base general */
+html, body { @apply bg-white text-black; }
