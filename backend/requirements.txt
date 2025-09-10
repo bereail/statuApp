@@ -1,12 +1,18 @@
 # requirements.txt — StatuApp
 
+# Núcleo
 Django==5.2.5
 djangorestframework==3.16.1
 django-cors-headers==4.7.0
 Pillow==11.3.0
-PyMySQL==1.1.1
 
+# Base de datos
+PyMySQL==1.1.2
+cryptography==43.0.1    # necesario para MySQL con caching_sha2_password
 
-# Opcionales / recomendados para el stack
-python-decouple==3.8       # manejar variables de entorno fácilmente
-djangorestframework-simplejwt==5.3.1   # auth con JWT (si usás login/token)
+# Static files
+whitenoise==6.7.0       # servir estáticos en desarrollo/producción
+
+# Utilidades
+python-decouple==3.8    # variables de entorno (.env)
+djangorestframework-simplejwt==5.3.1   # JWT auth (si usás login/token)
