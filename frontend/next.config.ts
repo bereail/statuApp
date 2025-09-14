@@ -1,17 +1,21 @@
-// next.config.ts
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'statuapp.ailonline.com.ar',
-        port: '',
-        pathname: '/media/**', // ajustá si cambia la ruta
+        protocol: "http",
+        hostname: "127.0.0.1",
+        port: "8000",
+        pathname: "/media/**", // tu MEDIA_URL
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8000",
+        pathname: "/media/**",
       },
     ],
-    // domains: ['statuapp.ailonline.com.ar'], // alternativa simple
   },
 };
 

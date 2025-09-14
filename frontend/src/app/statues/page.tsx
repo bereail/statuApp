@@ -1,38 +1,34 @@
-/*// app/statues/[slug]/page.tsx*/
 // app/statues/page.tsx
+import { fetchJson } from "lib/api";
 import EstatuasClient from "./client";
 
 type ApiStatue = {
   slug: string;
   title: string;
   barrio?: string | null;
-  cover_url?: string | null; // viene del backend
+  cover_url?: string | null;
 };
 
 type CardStatue = {
   slug: string;
   title: string;
   barrio?: string | null;
-  image?: string | null;     // lo que espera tu <StatueCard>
+  image?: string | null;
 };
 
 const toAbs = (u?: string | null) =>
   u ? new URL(u, process.env.NEXT_PUBLIC_API_BASE!).toString() : null;
 
 export default async function Page() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/statues`, {
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error("No se pudo cargar la lista de estatuas");
-
-  const json = await res.json();
+  // usa el helper y el slash final
+  const json = await fetchJson<any>("statues/");
   const items: ApiStatue[] = json?.results ?? json;
 
   const statues: CardStatue[] = items.map((s) => ({
     slug: s.slug,
     title: s.title,
     barrio: s.barrio ?? null,
-    image: toAbs(s.cover_url ?? null), // normalizamos a 'image'
+    image: toAbs(s.cover_url ?? null),
   }));
 
   return (
