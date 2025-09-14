@@ -1,24 +1,67 @@
 {
+  // Archivo de configuración de TypeScript para Next.js (Turbopack/SWC).
+  // No genera JS (solo chequea tipos); la build real la hace Next.
+
   "compilerOptions": {
+    // Permite imports absolutos basados en la raíz del proyecto.
     "baseUrl": ".",
+
+    // Alias "@/..." → "src/..." para imports más limpios.
     "paths": {
       "@/*": ["./src/*"]
     },
+
+    // Nivel de JS “destino” para análisis de tipos (ES2017 ≈ async/await).
     "target": "ES2017",
+
+    // Tipos disponibles: APIs del navegador y últimas features de ES.
     "lib": ["dom", "dom.iterable", "esnext"],
+
+    // Permite incluir .js en el análisis (útil si mezclás JS y TS).
     "allowJs": true,
+
+    // No revisa tipos dentro de definiciones de terceros (*.d.ts) → más rápido.
     "skipLibCheck": true,
+
+    // Modo estricto de TypeScript (null-safety, etc.). Recomendado.
     "strict": true,
+
+    // No emite archivos compilados; Next se encarga de transpilar.
     "noEmit": true,
+
+    // Facilita `import default` desde librerías CommonJS.
     "esModuleInterop": true,
+
+    // Sintaxis moderna de módulos (import/export). Afecta el análisis (no la salida).
     "module": "esnext",
+
+    // Resolución de módulos pensada para bundlers modernos (Turbopack/SWC).
     "moduleResolution": "bundler",
+
+    // Permite `import data from "./algo.json"`.
     "resolveJsonModule": true,
+
+    // Requisito de Next/SWC: cada archivo se puede transpilar de forma aislada.
     "isolatedModules": true,
+
+    // Deja el JSX como está; Next/SWC lo transforma en la build.
     "jsx": "preserve",
+
+    // Cachea información para acelerar el chequeo de tipos en el editor.
     "incremental": true,
+
+    // Plugin oficial de Next para mejorar autocompletado y diagnóstico.
     "plugins": [{ "name": "next" }]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+
+  // Qué archivos incluye el chequeo de tipos.
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+
+  // Excluye dependencias (no tiene sentido tiparlas aquí).
   "exclude": ["node_modules"]
 }

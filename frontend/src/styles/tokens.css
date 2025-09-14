@@ -1,0 +1,31 @@
+/* src/styles/tokens.css : solo variables, nada de selectores complejos */
+:root {
+  /* ========= COLORES DE MARCA (HSL sin comas) ========= */
+  --color-primary: 26 95% 55%;     /* Color principal (CTA/botones). Naranja estatua. */
+  --color-secondary: 220 45% 45%;  /* Secundario (resaltados). Azul medio. */
+  --color-accent: 142 58% 45%;     /* Acento (detalles). Verde medio. */
+
+  /* ========= RADIUS & SOMBRAS ========= */
+  --radius: 1.25rem;               /* Radio base para esquinas redondeadas. */
+  --shadow-soft: 0 8px 24px rgba(0,0,0,.12); /* Sombra suave para tarjetas/overlays. */
+
+  /* ========= FONDOS BASE (azules) =========
+     Estas 3 variables alimentan las clases DaisyUI:
+     bg-base-100 / bg-base-200 / bg-base-300
+     y, por extensión, el contraste de text-base-content, borders, etc.
+  */
+  --bg-base-100: 220 50% 15%;      /* Fondo principal (azul oscuro profundo). */
+  --bg-base-200: 220 45% 20%;      /* Fondo de secciones/contornos (un poco más claro). */
+  --bg-base-300: 220 40% 25%;      /* Superficies elevadas/hover (más claro). */
+
+  /* ========= TIPOGRAFÍAS ========= */
+  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; /* Sans UI */
+  --font-serif: "Cormorant Garamond", Georgia, serif;                           /* Titulares/hero */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;                  /* Código/números alineados */
+
+  /* ========= ESPACIADOS (escala base) ========= */
+  --space-1: .25rem;   /* 4px  - micro espaciado (chips, tags, tight gaps). */
+  --space-2: .5rem;    /* 8px  - espaciado corto. */
+  --space-3: .75rem;   /* 12px - espaciado medio corto. */
+  --space-4: 1rem;     /* 16px - espaciado base. */
+}

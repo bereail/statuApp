@@ -1,0 +1,6 @@
+/* src/styles/utilities.css */
+.container-page { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+.section { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16; }
+.title-hero { @apply font-serif text-4xl sm:text-6xl font-bold tracking-tight; }
+.text-muted { @apply text-base-content; opacity: .8; }
+.grid-autofit { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; }

@@ -1,13 +1,20 @@
+/* IMPORTS – SIEMPRE ARRIBA */
+@import "../styles/tokens.css";
+@import "../styles/theme.css";      /* si lo usás */
+@import "../styles/utilities.css";  /* tus helpers, sin @layer */
+
+/* Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Tema claro base */
-:root {
-  --bg: #ffffff;
-  --border: #e5e7eb; /* slate-200 */
-  --muted: #6b7280;  /* slate-500 */
+/* Capas opcionales */
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-base-100 text-base-content antialiased; } /* usa tu fondo por tema */
 }
 
-/* Base general */
-html, body { @apply bg-white text-black; }
+@layer components {
+  .card-glass { @apply bg-base-100/60 backdrop-blur rounded-2xl shadow-lg; }
+  .btn-primary-soft { @apply btn btn-primary btn-wide md:btn-md; }
+}

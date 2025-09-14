@@ -14,7 +14,7 @@ export const viewport: Viewport = { themeColor: '#ffffff' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" data-theme="light" suppressHydrationWarning>
+    <html lang="es" data-theme="statuapp" suppressHydrationWarning>
       <meta name="color-scheme" content="light" />
       <meta name="theme-color" content="#ffffff" />
       <body className={`min-h-dvh bg-base-100 text-base-content antialiased ${inter.className}`}>
@@ -25,9 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/" className="font-semibold text-xl">StatuApp</Link>
             </div>
             <div className="navbar-end gap-1 sm:gap-2">
-              <Link className="btn btn-ghost btn-sm" href="/statues">Estatuas   </Link>
-              <Link className="btn btn-ghost btn-sm" href="/mapa">Mapa   </Link>
-              <Link className="btn btn-primary btn-sm" href="/buscar">Buscar  </Link>
+              <Link className="btn btn-ghost btn-sm" href="/statues">Estatuas</Link>
+              <Link className="btn btn-ghost btn-sm" href="/mapa">Mapa</Link>
+              <Link className="btn btn-primary btn-sm" href="/buscar">Buscar</Link>
             </div>
           </nav>
         </header>
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
 
-        {/* FOOTER */}
+        {/* FOOTER global */}
         <footer className="container mx-auto max-w-6xl px-4 py-10 border-t border-base-200 text-sm text-base-content/70">
           © {new Date().getFullYear()} StatuApp — Rosario
         </footer>

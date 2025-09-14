@@ -1,0 +1,20 @@
+/* src/styles/theme.css */
+
+/* Fuente global */
+:root {
+  font-family: var(--font-sans);
+}
+
+/* Bordes redondeados por defecto */
+* { border-radius: 0; }
+.card, .btn, .input, .select { border-radius: var(--radius); }
+
+/* Sombras */
+.shadow-soft { box-shadow: var(--shadow-soft); }
+
+/* Fondos decorativos reutilizables */
+.bg-marble {
+  background-image: url("/textures/marble-dark.jpg");
+  background-size: cover;
+  background-position: center;
+}

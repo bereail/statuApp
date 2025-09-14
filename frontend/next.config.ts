@@ -1,10 +1,18 @@
-/** @type {import('next').NextConfig} */
-module.exports = {
+// next.config.ts
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      { protocol: 'http', hostname: '127.0.0.1', port: '8000', pathname: '/media/**' },
-      // en prod: cambia por tu dominio de Django
-      // { protocol: 'https', hostname: 'api.tudominio.com', pathname: '/media/**' },
+      {
+        protocol: 'https',
+        hostname: 'statuapp.ailonline.com.ar',
+        port: '',
+        pathname: '/media/**', // ajustá si cambia la ruta
+      },
     ],
+    // domains: ['statuapp.ailonline.com.ar'], // alternativa simple
   },
 };
+
+export default nextConfig;
